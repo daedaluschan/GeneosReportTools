@@ -28,4 +28,5 @@ There are different approach to do that. In my own opinions, none of those can a
 > You don't really have an idea for how long an alerts hasn't be handled cleared.
 > 
 > **Conclusion**
+> 
 > * I know many people would go for this option to make some analysis / reports about alerts. But it is difficult to automate it. Depending on the frequency you relaunch ActiveConsole, huge amount of data can loss if A/C crashed.
