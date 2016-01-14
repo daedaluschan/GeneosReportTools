@@ -29,3 +29,20 @@ There are different approach to do that. In my own opinions, none of those can a
 > 
 > **Conclusion:**
 > * I know many people would go for this option to make some analysis / reports about alerts. But it is difficult to automate it. Depending on the frequency you relaunch ActiveConsole, huge amount of data can loss if A/C crashed.
+
+### Scheduled Reporting###
+> **Pros:**
+> * Space (local disk) to store the data is generally not a problem
+> * Data is captured in a snapshot manner. I.e. the same alert will reported across extractions. This is good to reflect how alerts are pending for long.
+> * no manual export is needed. csv will be generated upon schedule.
+> * Since Csv files are exported automatically from time to time, so the performance on handling environment with large amount of data is more stable.
+> 
+> **Cons:**
+> * It still rely the ActiveConsole to be launched for the whole time.
+> * You cannot include self-defined attribute (usually used to construct the tree structure on your A/C statetree) into the report.
+> * There is a bug (being followed by PEBL) on ActiveConsole that when A/C is re-launched, you need to re-enable the scheduling in order to make it effective.
+> * You can miss alerts if it only popped between snapshot schedules and got cleared before the next schedule
+> * the most frequent schedule you can do is hourly.
+> 
+> **Conclusion:**
+> * An options with most potential in my opinions.
