@@ -45,4 +45,20 @@ There are different approach to do that. In my own opinions, none of those can a
 > * the most frequent schedule you can do is hourly.
 > 
 > **Conclusion:**
-> * An options with most potential in my opinions.
+> * An options with most potential, in my opinions.
+> * Not good if you want to capture all alerts. But it can give you a brief idea how much alerts and of which type is the support team facing day-to-day.
+
+In the rest of this article I am going to illustrate more on how we can make use of the "Scheduled Reporting" feature to produce you summary of Geneos alerts for a given time frame. I also developed some Python scripting (on [GitHub](https://github.com/daedaluschan/GeneosReportTools) as open source) to aid.
+
+I am not going to go thru the detail on how to use the Reporting feature. You may find more information in ITRS's documentation (Gateway2 Reference Guide.pdf).
+
+Okay, so once you received your regularly generated csv file, there are a few things you might want to do. Few things that make you a better format report. 
+
+> 1. Remove the first 2 rows which are appended by ActiveConsole and doesn't give you much advantage on producing a good looking report.
+> 2. Associate the date and time of when the alerts are seen (captured). This is not a necessary step, although I found it quite usage for my situation.
+> 3. Associate the key attribute (which is usually use for distinguishing which application the alert belongs to) on to each captured alert.
+> 
+
+Step #1 and #2 are pretty straight forward. I'm sure you have no problem to automate it with basic file / data (I used Python panadas for it's comprehensive feature on handling data) manipulation programming module.
+
+I would like to explain the tricks here to do Step #3. 
