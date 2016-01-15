@@ -56,9 +56,18 @@ Okay, so once you received your regularly generated csv file, there are a few th
 
 > 1. Remove the first 2 rows which are appended by ActiveConsole and doesn't give you much advantage on producing a good looking report.
 > 2. Associate the date and time of when the alerts are seen (captured). This is not a necessary step, although I found it quite usage for my situation.
-> 3. Associate the key attribute (which is usually use for distinguishing which application the alert belongs to) on to each captured alert.
+> 3. Extract the useful fields from the "User Readable Path", as ITRS did not organize if in separate column in the CSV.
+> 4. Associate the key attribute (which is usually use for distinguishing which application the alert belongs to) on to each captured alert.
 > 
 
-Step #1 and #2 are pretty straight forward. I'm sure you have no problem to automate it with basic file / data (I used Python panadas for it's comprehensive feature on handling data) manipulation programming module.
+Step #1, #2 and #3 are pretty straight forward. I'm sure you have no problem to automate it with basic file / data (I used Python panadas for it's comprehensive feature on handling data) manipulation programming module.
 
-I would like to explain the tricks here to do Step #3. 
+I would like to explain the tricks here to do Step #4. Basically, the managed entities' name doesn't always provide you good clues which application it belongs to (in most cases, it is the name of the server, named by your server team and doesn't make any sense to you). So it is extremely useful to work out a mapping between managed entity and the logical identity within your applications estate. A very common practice is assigning self-defined attribute as the application name on all managed entities. Managed entities will then be grouped in a structured manner according to your preferred "viewpath" on the "state tree" panel.
+
+How to we extract this mapping ? One might suggest to dig it out from the gateway config xml. But it is not always straight forward, because attributes can be assigned at the folder level of manged entities.
+
+One trick we can do is to make use of the ITRS's gateway-managedEntitiesData sampler (Yes, you need to enable the sampler first. Together with other gateway sampling function, those are good samplers when managing your Geneos infrastructure). Once you start this sampler, a dataview with all the managed entities will be shown with it's associated attributes as a column.
+
+Now, we are almost there and the next questions is - how do we extract the information by programs, in order to automate the process ? Thanks to ITRS, there is a service exposed from the gateways as a debug interface, namely Orb. You can access Orb via a browser with the url - http://(gatewayhost):(gatewayport)/ORB
+
+My [code](https://github.com/daedaluschan/GeneosReportTools/blob/master/geneosAlertsCsvMassage.py) shared on GitHub shows how we can "hack" into ORB and get the information required for the mapping purpose described earlier. The code also demonstrates the logic of extracting csv content and join (merge) those together.
