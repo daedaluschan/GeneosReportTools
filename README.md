@@ -70,4 +70,11 @@ One trick we can do is to make use of the ITRS's gateway-managedEntitiesData sam
 
 Now, we are almost there and the next questions is - how do we extract the information by programs, in order to automate the process ? Thanks to ITRS, there is a service exposed from the gateways as a debug interface, namely Orb. You can access Orb via a browser with the url - http://(gatewayhost):(gatewayport)/ORB
 
-My [code](https://github.com/daedaluschan/GeneosReportTools/blob/master/geneosAlertsCsvMassage.py) shared on GitHub shows how we can "hack" into ORB and get the information required for the mapping purpose described earlier. The code also demonstrates the logic of extracting csv content and join (merge) those together.
+My [code](https://github.com/daedaluschan/GeneosReportTools/blob/master/geneosAlertsCsvMassage.py) shared on GitHub shows how we can "hack" into ORB and get the information required for the mapping purpose described earlier. The code also demonstrates the logic of extracting csv content and join (merge) those together. You will need to modify the variable defining section to provide the following settings.
+
+- gateway host
+- gateway port
+- the self-defined attribute used to distinguish application name
+- sampler (view) name of the "gateway-managedEntitiesData" sampler
+
+
