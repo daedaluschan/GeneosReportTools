@@ -54,7 +54,7 @@ for tr in trList_me_1:
                 else:
                     app_name = None
                 mapping = {'managedEntity': tr.getchildren()[2].getchildren()[0].text, 
-                          'GFXApp': app_name}
+                          'AppName': app_name}
                 me_app_mapping.append(mapping)
 
 dfMapping = df(me_app_mapping)
